@@ -33,6 +33,9 @@ public interface TaskManager {
     void clearEpics();
     void clearSubtasks();
 
-    // Получение истории просмотров (до 10 последних задач)
+    // Получение истории просмотров
     List<Task> getHistory();
+
+    // Дополнительно
+    List<Subtask> getSubtasksByEpic(int epicId);
 }

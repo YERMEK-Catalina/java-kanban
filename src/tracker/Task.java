@@ -3,10 +3,10 @@ package tracker;
 import java.util.Objects;
 
 public class Task {
-    protected String name;
-    protected String description;
-    protected int id;
-    protected TaskStatus status;
+    private String name;
+    private String description;
+    private int id;
+    private TaskStatus status;
 
     public Task(String name, String description, TaskStatus status) {
         this.name = name;
@@ -15,12 +15,12 @@ public class Task {
         this.id = 0;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -28,7 +28,7 @@ public class Task {
     }
 
     public void setDescription(String description) {
-        this.description = description;  // Добавленный метод
+        this.description = description;
     }
 
     public int getId(){
@@ -39,7 +39,7 @@ public class Task {
         this.id = id;
     }
 
-    public TaskStatus getStatus () {
+    public TaskStatus getStatus() {
         return status;
     }
 
@@ -47,12 +47,10 @@ public class Task {
         this.status = status;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return id == task.id;
     }
