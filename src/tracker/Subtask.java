@@ -13,8 +13,8 @@ public class Subtask extends Task {
     }
 
     public void setEpicId(int epicId) {
-        if (this.id == epicId) {
-            return;
+        if (getId() == epicId) {
+            return; // нельзя установить эпик, равный самой подзадаче
         }
         this.epicId = epicId;
     }
@@ -22,11 +22,11 @@ public class Subtask extends Task {
     @Override
     public String toString() {
         return "Subtask{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", epicId=" + epicId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status=" + getStatus() +
                 '}';
     }
 }

@@ -161,7 +161,21 @@ public class InMemoryTaskManager implements TaskManager {
         return historyManager.getHistory();
     }
 
-    // Вспомогательный метод для обновления статуса эпика в зависимости от подзадач
+    @Override
+    public List<Subtask> getSubtasksByEpic(int epicId) {
+        List<Subtask> result = new ArrayList<>();
+        Epic epic = epics.get(epicId);
+        if (epic != null) {
+            for (Integer subId : epic.getSubtaskIds()) {
+                Subtask subtask = subtasks.get(subId);
+                if (subtask != null) {
+                    result.add(subtask);
+                }
+            }
+        }
+        return result;
+    }
+
     private void updateEpicStatus(int epicId) {
         Epic epic = epics.get(epicId);
         if (epic == null) {

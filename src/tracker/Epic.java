@@ -15,7 +15,7 @@ public class Epic extends Task {
     }
 
     public void addSubtaskId(int subTaskId) {
-        if (this.id == subTaskId) {
+        if (getId() == subTaskId) {
             return; // нельзя добавлять эпик как подзадачу к самому себе
         }
         subtaskIds.add(subTaskId);
@@ -26,4 +26,25 @@ public class Epic extends Task {
     }
 
     public void clearSubtaskIds() {
-        subtask
+        subtaskIds.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Epic epic = (Epic) o;
+        return getId() == epic.getId(); // сравнение только по id
+    }
+
+    @Override
+    public String toString() {
+        return "Epic{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status=" + getStatus() +
+                ", subtaskIds=" + subtaskIds +
+                '}';
+    }
+}
