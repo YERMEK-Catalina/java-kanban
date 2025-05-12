@@ -8,15 +8,15 @@ public class Task {
     protected int id;
     protected TaskStatus status;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Task(String name, String description, TaskStatus status) {
         this.name = name;
         this.description = description;
         this.status = status;
         this.id = 0;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {

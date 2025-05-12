@@ -17,6 +17,8 @@ public class TaskImmutabilityTest {
             public List<Task> getHistory() {
                 return new ArrayList<>();
             }
+            @Override
+            public void remove(int id) {}
         };
 
         // Создаем новый экземпляр менеджера задач

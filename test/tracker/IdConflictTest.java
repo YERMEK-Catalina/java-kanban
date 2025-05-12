@@ -15,6 +15,8 @@ public class IdConflictTest {
             public List<Task> getHistory() {
                 return new ArrayList<>();
             }
+            @Override
+            public void remove(int id) {}
         };
 
         InMemoryTaskManager taskManager = new InMemoryTaskManager(dummyHistoryManager);
