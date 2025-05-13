@@ -1,25 +1,28 @@
 package tracker;
 
-import java.util.Objects;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Epic extends Task {
+    private List<Integer> subtaskIds = new ArrayList<>();
+
     public Epic(String name, String description) {
         super(name, description, TaskStatus.NEW);
     }
 
-    private ArrayList<Integer> subtaskIds = new ArrayList<>();
-
-    public ArrayList<Integer> getSubtaskIds() {
+    public List<Integer> getSubtaskIds() {
         return subtaskIds;
     }
 
     public void addSubtaskId(int subTaskId) {
+        if (getId() == subTaskId) {
+            return; // нельзя добавлять эпик как подзадачу к самому себе
+        }
         subtaskIds.add(subTaskId);
     }
 
     public void removeSubtaskId(int subTaskId) {
-        subtaskIds.remove(subTaskId);
+        subtaskIds.remove(Integer.valueOf(subTaskId));
     }
 
     public void clearSubtaskIds() {
@@ -30,20 +33,18 @@ public class Epic extends Task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Epic epic = (Epic) o;
-        return Objects.equals(subtaskIds, epic.subtaskIds);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), subtaskIds);
+        return getId() == epic.getId(); // сравнение только по id
     }
 
     @Override
     public String toString() {
         return "Epic{" +
-                "subtaskIds=" + subtaskIds +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status=" + getStatus() +
+                ", subtaskIds=" + subtaskIds +
                 '}';
     }
 }
