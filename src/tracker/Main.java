@@ -1,9 +1,12 @@
 package tracker;
 
+import java.io.File;
+
 public class Main {
         public static void main(String[] args) {
-                // Получаем менеджера через утилитный класс
-                TaskManager manager = Managers.getDefault();
+
+                File file = new File("data.csv");
+                TaskManager manager = new FileBackedTaskManager(new InMemoryHistoryManager(), file);
 
                 // Создание обычных задач
                 Task task1 = new Task("Переезд", "Собрать вещи и переехать", TaskStatus.NEW);
@@ -58,5 +61,11 @@ public class Main {
                 System.out.println("Задачи: " + manager.getTasks());
                 System.out.println("Эпики: " + manager.getEpics());
                 System.out.println("Подзадачи: " + manager.getSubtasks());
+
+                System.out.println("\n--- Загрузка из файла ---");
+                TaskManager restored = FileBackedTaskManager.loadFromFile(file);
+                System.out.println("Задачи: " + restored.getTasks());
+                System.out.println("История: " + restored.getHistory());
+
         }
 }

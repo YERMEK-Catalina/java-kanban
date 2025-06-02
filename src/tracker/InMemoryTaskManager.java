@@ -3,13 +3,14 @@ package tracker;
 import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
-    private final Map<Integer, Task> tasks = new HashMap<>();
-    private final Map<Integer, Epic> epics = new HashMap<>();
-    private final Map<Integer, Subtask> subtasks = new HashMap<>();
-    private int nextId = 0;
-    private final HistoryManager historyManager;
+    protected  final Map<Integer, Task> tasks = new HashMap<>();
+    protected  final Map<Integer, Epic> epics = new HashMap<>();
+    protected  final Map<Integer, Subtask> subtasks = new HashMap<>();
+    protected int nextId = 0;
+    protected final HistoryManager historyManager;
 
     public InMemoryTaskManager(HistoryManager historyManager) {
+
         this.historyManager = historyManager;
     }
 
@@ -159,6 +160,10 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
+    }
+
+    protected HistoryManager getHistoryManager() {
+        return historyManager;
     }
 
     @Override
